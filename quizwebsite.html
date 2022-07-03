@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jaswanth_questions</title>
+        <style>
+            .body{
+                background-color: rgb(35, 36, 33);
+            }
+            .btn{
+                background-color: crimson;
+                border-radius: 10px;
+                padding: 9px;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                font-weight: 900;
+                /* border: 20px; */
+                border-color: black;
+
+            }
+            .btn:hover{
+                cursor: pointer;
+                background-color: goldenrod;
+                box-shadow: 0 10px 32px 0 rgb(231, 6, 235);
+            }
+            .question{
+                margin: 10px auto;
+                width: 50%;
+                padding: 5px;
+                border-radius: 10px;
+                border:solid 2px black;
+                text-align: center;
+                background-color: rgb(182, 243, 91);
+                display: none;
+            }
+            .question:hover{
+                box-shadow: 0 10px 32px 0 yellow;
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+            .ansDiv{
+                background-color: crimson;
+                visibility: hidden;
+                padding: 5px;
+                border-radius: 50px;
+               
+            }
+            .buttons{
+                visibility: hidden;
+                padding: 20px;
+             }
+             .buqq:hover{
+                box-shadow: 0 16px 32px 0 yellow;
+                background-color: crimson;
+             }
+             .finalbtn{
+                /* background-color: rgb(224, 9, 253); */
+                border-radius: 10px;
+                padding: 9px;
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-weight: 900;
+             }
+             .finalbtn:hover{
+                box-shadow: 0 16px 32px 0 rgb(224, 9, 253);
+                background-color: yellow;
+             }
+
+        </style>
+    </head>
+    <body class="body">
+        <script>
+            var ansArray = [];
+            var CorrectArray = [0,2,0];
+            var ansblock
+            var quiz
+            var score = 0
+            function startQuiz(){
+                document.getElementById("buttonsdiv").style.visibility = "visible";
+                document.getElementById("subhead").style.display="none";
+                document.getElementById("startbutton").style.display="none";
+            }
+             function questiononevisible(){
+                document.getElementById("question0").style.display="block";
+                document.getElementById("question2").style.display="none";
+                document.getElementById("question1").style.display="none";
+             }
+             function questiontwovisible(){
+                document.getElementById("question0").style.display="none";
+                document.getElementById("question2").style.display="none";
+                document.getElementById("question1").style.display="block";
+             }
+             function questionthreevisible(){
+                document.getElementById("question2").style.display="block";
+                document.getElementById("question1").style.display="none";
+                document.getElementById("question0").style.display="none";
+             }
+            function ansCheck(buttonNumber){
+                quiz = buttonNumber
+                console.log(buttonNumber)
+                for(i=0 ; i<4 ; i++){
+                    if(document.forms[buttonNumber].elements[i].checked){
+                        ansArray[buttonNumber] = i
+                    }
+                }
+                ansblock = "ansblock"+buttonNumber;
+                if(ansArray[buttonNumber]==CorrectArray[buttonNumber])
+                {
+                     score++
+                     console.log("hello",score)
+                     document.getElementById(ansblock).style.visibility = "visible";
+                     document.getElementById(ansblock).innerHTML="Correct!!";
+                }
+                else
+                    {
+                     document.getElementById(ansblock).style.visibility = "visible";
+                     document.getElementById(ansblock).innerHTML="Wrong!!";
+                }
+            }
+            function finalScore(){
+                document.getElementById("question2").style.display ="none"
+                document.getElementById("subhead").style.display = "block"
+                document.getElementById("buttonone").style.display = "none"
+                document.getElementById("buttontwo").style.display = "none"
+                document.getElementById("buttonthree").style.display = "none"
+                document.getElementById("text").innerHTML = "Thank you "
+                if(score<=3){
+                alert("Are you sure to exit from quiz! , And ready to see your score !!")
+                document.getElementById("subhead").innerHTML = "you scored :-     " +score+ "/3";
+                 }
+                }
+        </script>
+        <div style="text-align: center; margin: 80px auto;">
+            <div >
+                <h1 style="color: rgb(244, 239, 239);font-family: Brush Script MT, Brush Script Std, cursive;" id="text">The Jaswanth singh Quiz</h1>
+                <h2 id="subhead" style="color: rgb(244, 239, 239);">Test your knowledge here..</h2>    
+                <button  style="height:40px; width:60px; border-radius: 10px;" class="btn" onclick="startQuiz()" id="startbutton"> start</button>
+            </div>
+            <div class="buttons" id="buttonsdiv">
+                <button class="buqq" style="height:40px; width:40px; border-radius: 10px; " onclick="questiononevisible()" id="buttonone"> 1 </button>
+                <button class="buqq" style="height:40px; width:40px; border-radius: 10px; " onclick="questiontwovisible()" id="buttontwo"> 2 </button>
+                <button class="buqq"  style="height:40px; width:40px; border-radius: 10px;" onclick="questionthreevisible()" id="buttonthree"> 3 </button>
+            </div>
+            <div class="question" id="question0">
+                <h3>Q1.Which animal is known as the 'Ship of the Desert"?</h3>
+                <form>
+                    <table cellpadding = "10px" align="center">
+                        <tr align="left">
+                            <td>
+                                <input type="radio" name="question1" value="0" id="ques1"> Camel
+                            </td>
+                            <td>
+                                <input type="radio" name="question1" value="1" id="ques1">Dog
+                            </td>
+                        </tr>
+                        <tr align="left">
+                            <td>
+                                <input type="radio" name="question1" value="2" id="ques1">Cat
+                            </td>
+                            <td>
+                                <input type="radio" name="question1" value="3" id="ques1">Elephant
+                            </td>
+                        </tr>
+                        <tr >
+                            <td colspan="2" class="ansDiv" id="ansblock0"> Correct!!</td>
+                        </tr>
+                      
+                        <tr>
+                            <td colspan="2">
+                                <input type="button" value="submit" class="btn" id="0" onclick="ansCheck(this.id)">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="question" id="question1">
+                <h3>Q2.Name the largest planet of our Solar System?</h3>
+                <form>
+                    <table cellpadding = "10px" align="center">
+                        <tr align="left">
+                            <td>
+                                <input type="radio" name="question1" value="quesoneoption0" id="ques1">Sun
+                            </td>
+                            <td>
+                                <input type="radio" name="question1" value="quesoneoption1" id="ques1">Earth
+                            </td>
+                        </tr>
+                        <tr align="left">
+                            <td>
+                                <input type="radio" name="question1" value="quesoneoption2" id="ques1">Jupiter
+                            </td>
+                            <td>
+                                <input type="radio" name="question1" value="quesoneoption3" id="ques1">Saturn
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="ansDiv" id="ansblock1"> Correct!!</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input type="button" value="submit" class="btn"  id="1" onclick="ansCheck(this.id)">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="question" id="question2">
+                <h3>Q3.Chemical formulae of Hydrochloric acid is ?</h3>
+                <form>
+                    <table cellpadding = "10px" align="center">
+                        <tr align="left">
+                            <td>
+                                <input type="radio" name="question1" value="qwerty" id="ques1">Hcl
+                            </td>
+                            <td>
+                                <input type="radio" name="question1" value="qwerty" id="ques1">H<sub>2</sub>o
+                            </td>
+                        </tr>
+                        <tr align="left">
+                            <td>
+                                <input type="radio" name="question1" value="qwerty" id="ques1">CaCo<sub>3</sub>
+                            </td>
+                            <td>
+                                <input type="radio" name="question1" value="qwerty" id="ques1">None
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="ansDiv" id="ansblock2"> Correct!!</td>
+                        </tr>
+                        
+                        <tr>
+                            <td colspan="2">
+                                <input type="button" value="submit" class="btn" id="2" onclick="ansCheck(this.id)">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <input type="button" value="Result" class="finalbtn" id="final" onclick="finalScore()">
+
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
