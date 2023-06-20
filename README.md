@@ -1,1 +1,1 @@
-# SimpleQuiz.github.io
+# QuizSpot
